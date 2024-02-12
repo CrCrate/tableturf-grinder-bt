@@ -47,7 +47,7 @@ nx.press_buttons(p1, [Buttons.A]) #accept chal
 sleep(6.5) ###DEC
 
 
-
+# TODO try block=false for rapid inputs?
 # main gameplay loop
 while True:
     print(f"\nSTARTING GAME {game_counter}\n")
@@ -89,23 +89,26 @@ while True:
                     nx.press_buttons(p1, [Buttons.DPAD_RIGHT, Buttons.A], down=0.03, up=0.02)
                 last_side = 'right'
 
-            # p1: place card as low as possible (this should fit within nextturn animation)
+            # p1: place card as low as possible 
             for x in range(10):
-                nx.press_buttons(p1, [Buttons.DPAD_UP, Buttons.A], down=0.03, up=0.02)
+                nx.press_buttons(p1, [Buttons.DPAD_UP, Buttons.A], down=0.03, up=0)
+                sleep(0.02)
 
         elif x <= 3: # next two 
             if last_side == 'right':
+                sleep(0.05)
                 for x in range(3): 
                     nx.press_buttons(p1, [Buttons.DPAD_LEFT, Buttons.A], down=0.03, up=0.03)
                 last_side = 'left'
             else:
                 for x in range(3): 
-                    nx.press_buttons(p1, [Buttons.DPAD_RIGHT, Buttons.A], down=0.03, up=0.02)
+                    nx.press_buttons(p1, [Buttons.DPAD_RIGHT, Buttons.A], down=0.03, up=0.03)
                 last_side = 'right'
 
-            # p1: place card as low as possible (this should fit within nextturn animation)
-            for x in range(12):
-                nx.press_buttons(p1, [Buttons.DPAD_UP, Buttons.A], down=0.03, up=0.02)        
+            # p1: place card as low as possible 
+            for x in range(13):
+                nx.press_buttons(p1, [Buttons.DPAD_UP, Buttons.A], down=0.03, up=0)
+                sleep(0.02)        
         else: # last four
             if last_side == 'right':
                 for x in range(3): 
@@ -116,22 +119,24 @@ while True:
                     nx.press_buttons(p1, [Buttons.DPAD_RIGHT, Buttons.DPAD_UP, Buttons.A], down=0.03, up=0.02)
                 last_side = 'right'
 
-            # p1: place card as low as possible (this should fit within nextturn animation)
+            # p1: place card as low as possible 
             for x in range(16):
-                nx.press_buttons(p1, [Buttons.DPAD_UP, Buttons.A], down=0.03, up=0.02)
+                nx.press_buttons(p1, [Buttons.DPAD_UP, Buttons.A], down=0.03, up=0)
+                sleep(0.02)
         print('p1 done')
 
         sleep(0.1)
         # p2: skip turn/discard
         nx.press_buttons(p2, [Buttons.DPAD_UP])
         sleep(0.1)
-        nx.press_buttons(p2, [Buttons.A], down=0.03)
-        sleep(0.8)
-        nx.press_buttons(p2, [Buttons.A], down=0.03)
+        nx.press_buttons(p2, [Buttons.A], down=0.05, up=0.1)
+        sleep(0.2)
+        nx.press_buttons(p2, [Buttons.A], down=0.05)
 
         sleep(6.5) 
 
     print('forfeiting...')
+    sleep(0.02)
     # forfeit and restart
     nx.press_buttons(p2, [Buttons.PLUS], down=0.03)
     sleep(0.3)
@@ -152,5 +157,5 @@ while True:
     sleep(0.1)
     nx.press_buttons(p2, [Buttons.A], down=0.03)
 
-    sleep(2.5)
+    sleep(2.1)
     game_counter += 1
