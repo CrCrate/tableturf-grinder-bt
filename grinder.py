@@ -48,6 +48,7 @@ sleep(6.5) ###DEC
 
 
 # TODO try block=false for rapid inputs?
+# TODO try premade full macros -||- instead of loops?
 # main gameplay loop
 while True:
     print(f"\nSTARTING GAME {game_counter}\n")
