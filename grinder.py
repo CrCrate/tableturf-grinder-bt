@@ -112,7 +112,7 @@ while True:
         # p2: skip turn/discard
         nx.macro(p2, macros.skip_turn)
 
-        sleep(7) 
+        sleep(6.7) 
 
     print('forfeiting...')
     sleep(0.02)
@@ -121,7 +121,7 @@ while True:
     #giveup dialog
     nx.press_buttons(p1, [Buttons.A], down=0.03, up=0)
     nx.press_buttons(p2, [Buttons.A], down=0.03)
-    sleep(6)
+    sleep(5.7)
     #result screen
     nx.press_buttons(p1, [Buttons.A], down=0.03, up=0)
     nx.press_buttons(p2, [Buttons.A], down=0.03)

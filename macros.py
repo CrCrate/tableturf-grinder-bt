@@ -14,7 +14,7 @@ LOOP {}
 
 move_horizontal_place = """
 LOOP {}
-    DPAD_{} 0.03s
+    DPAD_{} 0.02s
     A 0.02s
 """
 
@@ -26,6 +26,7 @@ LOOP {}
 """
 
 skip_turn = """
+0.005s
 DPAD_UP 0.03s
 0.1s
 A 0.03s
