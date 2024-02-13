@@ -1,17 +1,13 @@
 from nxbt import Nxbt, PRO_CONTROLLER, Buttons
 from time import sleep
-import .macros
+import macros
 
 nx = Nxbt(debug=False, log_to_file=False)
 
-initial_side = 'left' # left, right
-
+initial_side = 'LEFT' # left, right
 
 game_counter = 0
-
-last_side = ''
-if initial_side == 'left': last_side = 'right'
-else: last_side = 'left'
+next_side = initial_side
 
 print("init")
 # TODO add reconnect (config file?)
@@ -57,7 +53,7 @@ while True:
     print('setup...')
     # start setup
     nx.press_buttons(p1, [Buttons.A]) #map sel
-    sleep(0.6)
+    sleep(0.7)
     nx.press_buttons(p1, [Buttons.A]) #deck sel
     nx.press_buttons(p2, [Buttons.A])
 
@@ -77,75 +73,51 @@ while True:
         print(f'round {x}...')
 
         nx.press_buttons(p1, [Buttons.A]) #p1 select card
-        #sleep(0.3)
+        sleep(0.05)
         # p1: position card at the bottom + preplace if applicable
         if x <= 1: # first two cards (bottom row, below starting point)
-            if last_side == 'right':
-                for x in range(3): 
-                    nx.press_buttons(p1, [Buttons.DPAD_DOWN], down=0.03, up=0.0)
-                    nx.press_buttons(p1, [Buttons.DPAD_LEFT, Buttons.A], down=0.03, up=0.02)
-                last_side = 'left'
+            nx.macro(p1, macros.move_down_diagonal_place.format('3', next_side))
+
+            if next_side == 'RIGHT':
+                next_side = 'LEFT'
             else:
-                for x in range(3): 
-                    nx.press_buttons(p1, [Buttons.DPAD_DOWN], down=0.03, up=0.0)
-                    nx.press_buttons(p1, [Buttons.DPAD_RIGHT, Buttons.A], down=0.03, up=0.02)
-                last_side = 'right'
+                next_side = 'RIGHT'
 
             # p1: place card as low as possible 
-            for x in range(10):
-                nx.press_buttons(p1, [Buttons.DPAD_UP, Buttons.A], down=0.03, up=0)
-                sleep(0.02)
+            nx.macro(p1, macros.move_up_place.format('10'))
 
         elif x <= 3: # next two 
-            if last_side == 'right':
-                sleep(0.05)
-                for x in range(3): 
-                    nx.press_buttons(p1, [Buttons.DPAD_LEFT, Buttons.A], down=0.03, up=0.03)
-                last_side = 'left'
-            else:
-                for x in range(3): 
-                    nx.press_buttons(p1, [Buttons.DPAD_RIGHT, Buttons.A], down=0.03, up=0.03)
-                last_side = 'right'
+            nx.macro(p1, macros.move_horizontal_place.format('3', next_side))
 
-            # p1: place card as low as possible 
-            for x in range(13):
-                nx.press_buttons(p1, [Buttons.DPAD_UP, Buttons.A], down=0.03, up=0)
-                sleep(0.02)        
+            if next_side == 'RIGHT':
+                next_side = 'LEFT'
+            else:
+                next_side = 'RIGHT'
+
+            # p1: place card as low as possible     
+            nx.macro(p1, macros.move_up_place.format('14'))  
+
         else: # last four
-            if last_side == 'right':
-                for x in range(3): 
-                    nx.press_buttons(p1, [Buttons.DPAD_LEFT, Buttons.DPAD_UP, Buttons.A], down=0.03, up=0.02)
-                last_side = 'left'
+            nx.macro(p1, macros.move_up_diagonal_place.format('3', next_side))
+            if next_side == 'RIGHT':
+                next_side = 'LEFT'
             else:
-                for x in range(3): 
-                    nx.press_buttons(p1, [Buttons.DPAD_RIGHT, Buttons.DPAD_UP, Buttons.A], down=0.03, up=0.02)
-                last_side = 'right'
+                next_side = 'RIGHT'
 
             # p1: place card as low as possible 
-            for x in range(16):
-                nx.press_buttons(p1, [Buttons.DPAD_UP, Buttons.A], down=0.03, up=0)
-                sleep(0.02)
+            nx.macro(p1, macros.move_up_place.format('17'))
         print('p1 done')
 
         sleep(0.1)
         # p2: skip turn/discard
-        nx.press_buttons(p2, [Buttons.DPAD_UP])
-        sleep(0.1)
-        nx.press_buttons(p2, [Buttons.A], down=0.05, up=0.1)
-        sleep(0.2)
-        nx.press_buttons(p2, [Buttons.A], down=0.05)
+        nx.macro(p2, macros.skip_turn)
 
-        sleep(6.5) 
+        sleep(7) 
 
     print('forfeiting...')
     sleep(0.02)
     # forfeit and restart
-    nx.press_buttons(p2, [Buttons.PLUS], down=0.03)
-    sleep(0.3)
-    nx.press_buttons(p2, [Buttons.DPAD_RIGHT], down=0.03)
-    sleep(0.5)
-    nx.press_buttons(p2, [Buttons.A], down=0.03)
-    sleep(1)
+    nx.macro(p2, macros.forfeit)
     #giveup dialog
     nx.press_buttons(p1, [Buttons.A], down=0.03, up=0)
     nx.press_buttons(p2, [Buttons.A], down=0.03)
