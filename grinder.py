@@ -114,7 +114,7 @@ while True:
         nx.macro(p1, macros.move_up_place.format('3'), block=False)
         # p2: skip turn/discard
         nx.macro(p2, macros.skip_turn)
-
+        nx.press_buttons(p2, [Buttons.B], up=0, block=False) #incase of issue
         sleep(6.7) 
 
     print('forfeiting...')
