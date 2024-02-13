@@ -1,5 +1,6 @@
 from nxbt import Nxbt, PRO_CONTROLLER, Buttons
 from time import sleep
+import .macros
 
 nx = Nxbt(debug=False, log_to_file=False)
 
