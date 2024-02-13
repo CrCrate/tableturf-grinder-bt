@@ -53,12 +53,14 @@ while True:
     print('setup...')
     # start setup
     nx.press_buttons(p1, [Buttons.A]) #map sel
-    sleep(0.7)
+    nx.press_buttons(p1, [Buttons.A]) #repeat incase of missed input
+    sleep(0.6)
     nx.press_buttons(p1, [Buttons.A]) #deck sel
     nx.press_buttons(p2, [Buttons.A])
-
+    nx.press_buttons(p1, [Buttons.A]) # repeat for misinput
+    nx.press_buttons(p2, [Buttons.A])
     print('waiting for game to start...')
-    sleep(8.5)
+    sleep(8.2)
 
     print('go time')
 
