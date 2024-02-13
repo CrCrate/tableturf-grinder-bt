@@ -44,7 +44,7 @@ nx.press_buttons(p1, [Buttons.A]) #accept chal
 sleep(6.5) ###DEC
 
 
-# TODO replace all time.sleep()s with up=n for dev branch
+# TODO increase amount of multitasked moveup/skip
 # main gameplay loop
 while True:
     print(f"\nSTARTING GAME {game_counter}\n")
@@ -68,7 +68,7 @@ while True:
     nx.press_buttons(p1, [Buttons.A], block=False) #do not reshuffle
     nx.press_buttons(p2, [Buttons.A], block=False)
     nx.press_buttons(p1, [Buttons.A], block=False) #do not reshuffle
-    nx.press_buttons(p2, [Buttons.A], up=2) ###DEC
+    nx.press_buttons(p2, [Buttons.A], up=1.7) ###DEC
     #sleep(2)
 
     # gameplay
@@ -116,7 +116,7 @@ while True:
         nx.macro(p1, macros.move_up_place.format('3'), block=False)
         # p2: skip turn/discard
         nx.macro(p2, macros.skip_turn)
-        nx.press_buttons(p2, [Buttons.B], up=6.5) #incase of issue
+        nx.press_buttons(p2, [Buttons.B], up=6.4) #incase of issue
         #sleep(6.7) 
 
     print('forfeiting...')
@@ -133,7 +133,6 @@ while True:
     #sleep(3.1)
     # playagain
     nx.press_buttons(p1, [Buttons.A], down=0.03, block=False)
-    nx.press_buttons(p2, [Buttons.A], down=0.03, up=2.6) ###DEC
-
+    nx.press_buttons(p2, [Buttons.A], down=0.03, up=2.6) 
     #sleep(2.5)
     game_counter += 1
