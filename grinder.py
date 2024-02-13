@@ -59,14 +59,16 @@ while True:
     #sleep(0.2)
     print('waiting for game to start...')
     nx.press_buttons(p1, [Buttons.A], block=False) # repeat for misinput
-    nx.press_buttons(p2, [Buttons.A], up=8.2)
+    nx.press_buttons(p2, [Buttons.A], up=8.3)
     
     #sleep(8.1)
 
     print('go time')
 
     nx.press_buttons(p1, [Buttons.A], block=False) #do not reshuffle
-    nx.press_buttons(p2, [Buttons.A], up=2.1)
+    nx.press_buttons(p2, [Buttons.A], block=False)
+    nx.press_buttons(p1, [Buttons.A], block=False) #do not reshuffle
+    nx.press_buttons(p2, [Buttons.A], up=2) ###DEC
     #sleep(2)
 
     # gameplay
@@ -75,7 +77,7 @@ while True:
     for x in range(7):
         print(f'round {x}...')
 
-        nx.press_buttons(p1, [Buttons.A], up=0.15) #p1 select card
+        nx.press_buttons(p1, [Buttons.A]) #p1 select card
         #sleep(0.05)
         # p1: position card at the bottom + preplace if applicable
         if x <= 1: # first two cards (bottom row, below starting point)
@@ -114,7 +116,7 @@ while True:
         nx.macro(p1, macros.move_up_place.format('3'), block=False)
         # p2: skip turn/discard
         nx.macro(p2, macros.skip_turn)
-        nx.press_buttons(p2, [Buttons.B], up=6.75, block=False) #incase of issue
+        nx.press_buttons(p2, [Buttons.B], up=6.5) #incase of issue
         #sleep(6.7) 
 
     print('forfeiting...')
@@ -131,7 +133,7 @@ while True:
     #sleep(3.1)
     # playagain
     nx.press_buttons(p1, [Buttons.A], down=0.03, block=False)
-    nx.press_buttons(p2, [Buttons.A], down=0.03, up=2.6)
+    nx.press_buttons(p2, [Buttons.A], down=0.03, up=2.6) ###DEC
 
     #sleep(2.5)
     game_counter += 1
