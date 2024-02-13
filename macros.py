@@ -7,7 +7,8 @@ LOOP {}
 
 move_down_diagonal_place = """
 LOOP {}
-    DPAD_DOWN 0.02s
+    0.003s
+    DPAD_DOWN 0.03s
     DPAD_{} 0.02s
     A 0.02s
 """
@@ -35,6 +36,7 @@ A 0.03s
 """
 
 forfeit = """
+0.005s
 PLUS 0.03s
 0.4s
 DPAD_RIGHT 0.03s

@@ -12,10 +12,11 @@ nx = Nxbt(debug=False, log_to_file=False)
 frame_interval = 0.05
 
 L_spam = """
-LOOP 3
+LOOP 100
+    0.001s
     ZR 0.017s
     L 0.017s
-    0.005s
+    0.001s
 
 """
 p1 = nx.create_controller(PRO_CONTROLLER, adapter_path='/org/bluez/hci1', reconnect_address='34:2F:BD:D7:E1:EA')

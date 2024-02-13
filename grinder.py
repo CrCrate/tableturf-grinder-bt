@@ -55,16 +55,17 @@ while True:
     nx.press_buttons(p1, [Buttons.A]) #map sel
     nx.press_buttons(p1, [Buttons.A]) #repeat incase of missed input
     sleep(0.6)
-    nx.press_buttons(p1, [Buttons.A]) #deck sel
+    nx.press_buttons(p1, [Buttons.A], block=False) #deck sel
     nx.press_buttons(p2, [Buttons.A])
-    nx.press_buttons(p1, [Buttons.A]) # repeat for misinput
+    sleep(0.2)
+    nx.press_buttons(p1, [Buttons.A], block=False) # repeat for misinput
     nx.press_buttons(p2, [Buttons.A])
     print('waiting for game to start...')
-    sleep(8.2)
+    sleep(8)
 
     print('go time')
 
-    nx.press_buttons(p1, [Buttons.A]) #do not reshuffle
+    nx.press_buttons(p1, [Buttons.A], block=False) #do not reshuffle
     nx.press_buttons(p2, [Buttons.A])
     sleep(2)
 
@@ -86,7 +87,7 @@ while True:
                 next_side = 'RIGHT'
 
             # p1: place card as low as possible 
-            nx.macro(p1, macros.move_up_place.format('10'))
+            nx.macro(p1, macros.move_up_place.format('7'))
 
         elif x <= 3: # next two 
             nx.macro(p1, macros.move_horizontal_place.format('3', next_side))
@@ -97,7 +98,7 @@ while True:
                 next_side = 'RIGHT'
 
             # p1: place card as low as possible     
-            nx.macro(p1, macros.move_up_place.format('14'))  
+            nx.macro(p1, macros.move_up_place.format('11'))  
 
         else: # last four
             nx.macro(p1, macros.move_up_diagonal_place.format('3', next_side))
@@ -107,10 +108,10 @@ while True:
                 next_side = 'RIGHT'
 
             # p1: place card as low as possible 
-            nx.macro(p1, macros.move_up_place.format('17'))
-        print('p1 done')
+            nx.macro(p1, macros.move_up_place.format('14'))
+        print('p1 done(ish)')
 
-        sleep(0.1)
+        nx.macro(p1, macros.move_up_place.format('3'), block=False)
         # p2: skip turn/discard
         nx.macro(p2, macros.skip_turn)
 
@@ -121,17 +122,16 @@ while True:
     # forfeit and restart
     nx.macro(p2, macros.forfeit)
     #giveup dialog
-    nx.press_buttons(p1, [Buttons.A], down=0.03, up=0)
+    nx.press_buttons(p1, [Buttons.A], down=0.03, block=False)
     nx.press_buttons(p2, [Buttons.A], down=0.03)
     sleep(5.7)
     #result screen
-    nx.press_buttons(p1, [Buttons.A], down=0.03, up=0)
+    nx.press_buttons(p1, [Buttons.A], down=0.03, block=False)
     nx.press_buttons(p2, [Buttons.A], down=0.03)
-    sleep(3)
+    sleep(3.1)
     # playagain
-    nx.press_buttons(p1, [Buttons.A], down=0.03)
-    sleep(0.1)
+    nx.press_buttons(p1, [Buttons.A], down=0.03, block=False)
     nx.press_buttons(p2, [Buttons.A], down=0.03)
 
-    sleep(2.1)
+    sleep(2.5)
     game_counter += 1
