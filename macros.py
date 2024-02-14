@@ -33,15 +33,30 @@ DPAD_UP 0.03s
 A 0.03s
 0.7s
 A 0.04s
-0.005s
+0.04s
+A 0.02s
+0.1s
+B 0.02s
+6.55s
 """
 
 forfeit = """
 0.005s
 PLUS 0.03s
-0.4s
+0.03s
+PLUS 0.03s
+0.35s
 DPAD_RIGHT 0.03s
 0.6s
 A 0.03s
 1.3s
+"""
+
+# hits A twice in 0.1s N amount of times
+mash_a = """
+LOOP {}
+    A 0.03s
+    0.02s
+    A 0.03s
+    0.02s
 """

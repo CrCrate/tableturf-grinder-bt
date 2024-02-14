@@ -41,35 +41,37 @@ nx.press_buttons(p2, [Buttons.A]) #challange
 sleep(1)
 nx.press_buttons(p1, [Buttons.A]) #accept chal
 
-sleep(6.5) ###DEC
-
-
+sleep(6) ###DEC
+print('mashing initial setup...')
+nx.macro(p1, macros.mash_a.format('55'), block=False)
+print('...cont')
+nx.macro(p2, macros.mash_a.format('55'))
 # TODO increase amount of multitasked moveup/skip
 # TODO ADD interrupt for p2 to get out of equip
 # main gameplay loop
 while True:
     print(f"\nSTARTING GAME {game_counter}\n")
-
-    print('setup...')
+    nx.press_buttons(p1, [Buttons.ZR], down=0.5, up=0.5)
+    
     # start setup
-    nx.press_buttons(p1, [Buttons.A]) #map sel
-    nx.press_buttons(p1, [Buttons.A], up=0.7) #repeat incase of missed input
+    #nx.press_buttons(p1, [Buttons.A]) #map sel
+    #nx.press_buttons(p1, [Buttons.A], up=0.7) #repeat incase of missed input
     #sleep(0.6)
-    nx.press_buttons(p1, [Buttons.A], block=False) #deck sel
-    nx.press_buttons(p2, [Buttons.A], up=0.3)
+    #nx.press_buttons(p1, [Buttons.A], block=False) #deck sel
+    #nx.press_buttons(p2, [Buttons.A], up=0.3)
     #sleep(0.2)
-    print('waiting for game to start...')
-    nx.press_buttons(p1, [Buttons.A], block=False) # repeat for misinput
-    nx.press_buttons(p2, [Buttons.A], up=8.3)
+    #print('waiting for game to start...')
+    #nx.press_buttons(p1, [Buttons.A], block=False) # repeat for misinput
+    #nx.press_buttons(p2, [Buttons.A], up=8.3)
     
     #sleep(8.1)
 
     print('go time')
 
-    nx.press_buttons(p1, [Buttons.A], block=False) #do not reshuffle
-    nx.press_buttons(p2, [Buttons.A], block=False)
-    nx.press_buttons(p1, [Buttons.A], block=False) #do not reshuffle
-    nx.press_buttons(p2, [Buttons.A], up=1.7) ###DEC
+    #nx.press_buttons(p1, [Buttons.A], block=False) #do not reshuffle
+    #nx.press_buttons(p2, [Buttons.A], block=False)
+    #nx.press_buttons(p1, [Buttons.A], block=False) #do not reshuffle
+    #nx.press_buttons(p2, [Buttons.A], up=1.7) ###DEC
     #sleep(2)
 
     next_side = initial_side
@@ -127,23 +129,29 @@ while True:
         if x != 0: nx.macro(p1, macros.move_up_place.format('9'), block=False)
         # p2: skip turn/discard
         nx.macro(p2, macros.skip_turn)
-        nx.press_buttons(p2, [Buttons.B], up=6.4) #incase of issue
+        #nx.press_buttons(p2, [Buttons.B], up=6.4) #incase of issue
         #sleep(6.7) 
 
     print('forfeiting...')
     #sleep(0.02)
     # forfeit and restart
     nx.macro(p2, macros.forfeit)
+
+    print('mashing endscreen/setup...')
+    #skip all following dialogues and setup
+    nx.macro(p2, macros.mash_a.format('111'), block=False)
+    print('...cont')
+    nx.macro(p1, macros.mash_a.format('111'))
     #giveup dialog
-    nx.press_buttons(p2, [Buttons.A], down=0.03)
-    nx.press_buttons(p1, [Buttons.A], down=0.03, up=5.8)
+    #nx.press_buttons(p2, [Buttons.A], down=0.03)
+    #nx.press_buttons(p1, [Buttons.A], down=0.03, up=5.8)
     #sleep(5.7)
     #result screen
-    nx.press_buttons(p1, [Buttons.A], down=0.03, block=False)
-    nx.press_buttons(p2, [Buttons.A], down=0.03, up=3.2)
+    #nx.press_buttons(p1, [Buttons.A], down=0.03, block=False)
+    #nx.press_buttons(p2, [Buttons.A], down=0.03, up=3.2)
     #sleep(3.1)
     # playagain
-    nx.press_buttons(p1, [Buttons.A], down=0.03, block=False)
-    nx.press_buttons(p2, [Buttons.A], down=0.03, up=2.6) 
+    #nx.press_buttons(p1, [Buttons.A], down=0.03, block=False)
+    #nx.press_buttons(p2, [Buttons.A], down=0.03, up=2.6) 
     #sleep(2.5)
     game_counter += 1
