@@ -7,7 +7,7 @@ nx = Nxbt(debug=False, log_to_file=False)
 initial_side = 'LEFT' # left, right
 
 game_counter = 0
-next_side = initial_side
+
 
 print("init")
 # TODO add reconnect (config file?)
@@ -45,6 +45,7 @@ sleep(6.5) ###DEC
 
 
 # TODO increase amount of multitasked moveup/skip
+# TODO ADD interrupt for p2 to get out of equip
 # main gameplay loop
 while True:
     print(f"\nSTARTING GAME {game_counter}\n")
@@ -71,11 +72,13 @@ while True:
     nx.press_buttons(p2, [Buttons.A], up=1.7) ###DEC
     #sleep(2)
 
+    next_side = initial_side
     # gameplay
     ## p1: all the way down, all the way left/right (alternate), first placable spot moving up
     ## p2: skip: UP A A
     for x in range(7):
         print(f'round {x}...')
+        
 
         nx.press_buttons(p1, [Buttons.A]) #p1 select card
         #sleep(0.05)
@@ -88,8 +91,9 @@ while True:
             else:
                 next_side = 'RIGHT'
 
-            # p1: place card as low as possible 
-            nx.macro(p1, macros.move_up_place.format('7'))
+            # p1: place card as low as possible
+            # we can skip this on the first turn as the recommended deck will always place first card
+            if x == 1: nx.macro(p1, macros.move_up_place.format('7'))
 
         elif x <= 3: # next two 
             nx.macro(p1, macros.move_horizontal_place.format('3', next_side))
@@ -113,7 +117,7 @@ while True:
             nx.macro(p1, macros.move_up_place.format('14'))
         print('p1 done(ish)')
 
-        nx.macro(p1, macros.move_up_place.format('3'), block=False)
+        if x != 0: nx.macro(p1, macros.move_up_place.format('3'), block=False)
         # p2: skip turn/discard
         nx.macro(p2, macros.skip_turn)
         nx.press_buttons(p2, [Buttons.B], up=6.4) #incase of issue
