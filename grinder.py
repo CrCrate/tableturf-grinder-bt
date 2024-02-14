@@ -100,7 +100,7 @@ while True:
 
             # p1: place card as low as possible
             # we can skip this on the first turn as the recommended deck will always place first card
-            if x == 1: nx.macro(p1, macros.move_up_place.format('7'))
+            #if x == 1: nx.macro(p1, macros.move_up_place.format('7'))
 
         elif x <= 3: # next two 
             nx.macro(p1, macros.move_horizontal_place.format('3', next_side))
@@ -111,9 +111,9 @@ while True:
                 next_side = 'RIGHT'
 
             # p1: place card as low as possible     
-            nx.macro(p1, macros.move_up_place.format('11'))  
+            nx.macro(p1, macros.move_up_place.format('3'))  
 
-        else: # last four
+        else: # last three
             nx.macro(p1, macros.move_up_diagonal_place.format('3', next_side))
             if next_side == 'RIGHT':
                 next_side = 'LEFT'
@@ -121,10 +121,10 @@ while True:
                 next_side = 'RIGHT'
 
             # p1: place card as low as possible 
-            nx.macro(p1, macros.move_up_place.format('14'))
+            nx.macro(p1, macros.move_up_place.format('8'))
         print('p1 done(ish)')
 
-        if x != 0: nx.macro(p1, macros.move_up_place.format('3'), block=False)
+        if x != 0: nx.macro(p1, macros.move_up_place.format('9'), block=False)
         # p2: skip turn/discard
         nx.macro(p2, macros.skip_turn)
         nx.press_buttons(p2, [Buttons.B], up=6.4) #incase of issue

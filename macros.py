@@ -43,5 +43,5 @@ PLUS 0.03s
 DPAD_RIGHT 0.03s
 0.6s
 A 0.03s
-1.1s
+1.3s
 """
