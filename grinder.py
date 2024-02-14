@@ -83,7 +83,14 @@ while True:
         nx.press_buttons(p1, [Buttons.A]) #p1 select card
         #sleep(0.05)
         # p1: position card at the bottom + preplace if applicable
-        if x <= 1: # first two cards (bottom row, below starting point)
+        if x == 0:
+            nx.macro(p1, macros.move_down_diagonal_place.format('3', next_side), block=False)
+
+            if next_side == 'RIGHT':
+                next_side = 'LEFT'
+            else:
+                next_side = 'RIGHT'
+        elif x <= 1: # first two cards (bottom row, below starting point)
             nx.macro(p1, macros.move_down_diagonal_place.format('3', next_side))
 
             if next_side == 'RIGHT':
