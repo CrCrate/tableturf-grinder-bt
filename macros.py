@@ -27,14 +27,14 @@ LOOP {}
 """
 
 skip_turn = """
-0.005s
-DPAD_UP 0.03s
+0.03s
+DPAD_UP 0.1s
 0.1s
-A 0.03s
+A 0.1s
 0.7s
-A 0.04s
+A 0.1s
 0.04s
-A 0.02s
+A 0.1s
 0.1s
 B 0.02s
 6.55s

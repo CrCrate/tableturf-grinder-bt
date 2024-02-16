@@ -11,12 +11,12 @@ nx = Nxbt(debug=False, log_to_file=False)
 
 frame_interval = 0.05
 
-L_spam = """
+testmacro = """
 LOOP 100
-    0.001s
-    ZR 0.017s
-    L 0.017s
-    0.001s
+    ZR 0.1s
+    0.03s    
+    L_STICK_PRESS 0.1s
+    0.03s
 
 """
 p1 = nx.create_controller(PRO_CONTROLLER, adapter_path='/org/bluez/hci1', reconnect_address='34:2F:BD:D7:E1:EA')
@@ -27,7 +27,7 @@ print("connected to player 1 (target)!")
 sleep(3)
 print('starting')
 
-nx.macro(p1, L_spam)
+nx.macro(p1, testmacro)
 
 #while True:
 #    nx.press_buttons(p1, [Buttons.ZR], down=0.02, up=0, block=False)
