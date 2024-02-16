@@ -31,13 +31,13 @@ skip_turn = """
 DPAD_UP 0.1s
 0.1s
 A 0.1s
-0.7s
+0.6s
 A 0.1s
 0.04s
 A 0.1s
 0.1s
 B 0.02s
-6.55s
+6s
 """
 
 forfeit = """

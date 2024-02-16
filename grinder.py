@@ -124,7 +124,7 @@ while True:
 
             # p1: place card as low as possible 
             nx.macro(p1, macros.move_up_place.format('8'))
-        print('p1 done(ish)')
+        print('skipping...')
 
         if x != 0: nx.macro(p1, macros.move_up_place.format('9'), block=False)
         # p2: skip turn/discard
@@ -139,9 +139,9 @@ while True:
 
     print('mashing endscreen/setup...')
     #skip all following dialogues and setup
-    nx.macro(p2, macros.mash_a.format('111'), block=False)
+    nx.macro(p2, macros.mash_a.format('106'), block=False)
     print('...cont')
-    nx.macro(p1, macros.mash_a.format('111'))
+    nx.macro(p1, macros.mash_a.format('106'))
     #giveup dialog
     #nx.press_buttons(p2, [Buttons.A], down=0.03)
     #nx.press_buttons(p1, [Buttons.A], down=0.03, up=5.8)
