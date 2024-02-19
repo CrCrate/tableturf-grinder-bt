@@ -104,7 +104,8 @@ while True:
             # we can skip this on the first turn as the recommended deck will always place first card
             #if x == 1: nx.macro(p1, macros.move_up_place.format('7'))
 
-        elif x <= 3: # next two 
+        #elif x <= 3: # next two 
+        elif x == 99:
             nx.macro(p1, macros.move_horizontal_place.format('3', next_side))
 
             if next_side == 'RIGHT':
@@ -123,7 +124,7 @@ while True:
                 next_side = 'RIGHT'
 
             # p1: place card as low as possible 
-            nx.macro(p1, macros.move_up_place.format('6'))
+            nx.macro(p1, macros.move_up_place.format('3'))
         print('skipping...')
 
         if x != 0: nx.macro(p1, macros.move_up_place.format('11'), block=False)

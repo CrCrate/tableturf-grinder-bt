@@ -17,8 +17,8 @@ move_down_diagonal_place = """
 0.003s
 A 0.02s
 LOOP {}
-    DPAD_DOWN DPAD_{} A 0.016s
-    0.016s
+    DPAD_DOWN DPAD_{} 0.016s
+    A 0.016s
 """
 
 move_horizontal_place = """
@@ -29,8 +29,8 @@ LOOP {}
 
 move_up_diagonal_place = """
 LOOP {}
-    DPAD_UP DPAD_{} A 0.016s
-    0.016s
+    DPAD_UP DPAD_{} 0.016s
+    A 0.016s
 """
 
 move_down_diagonal_place_OLD = """
@@ -72,6 +72,8 @@ B 0.02s
 
 forfeit = """
 0.005s
+PLUS 0.016s
+0.016s
 PLUS 0.03s
 0.03s
 PLUS 0.03s
