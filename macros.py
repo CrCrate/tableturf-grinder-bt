@@ -7,8 +7,8 @@ LOOP {}
 """
 move_up_place_OLD = """
 LOOP {}
-    DPAD_UP 0.02s
-    A 0.02s
+    DPAD_UP 0.016s
+    A 0.016s
     0.005s
 """
 
@@ -71,7 +71,7 @@ B 0.02s
 """
 
 forfeit = """
-0.005s
+0.1s
 PLUS 0.016s
 0.016s
 PLUS 0.03s
