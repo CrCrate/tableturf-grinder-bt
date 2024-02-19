@@ -78,7 +78,7 @@ while True:
     # gameplay
     ## p1: all the way down, all the way left/right (alternate), first placable spot moving up
     ## p2: skip: UP A A
-    for x in range(7):
+    for x in range(6):
         print(f'round {x}...')
         
 
@@ -113,7 +113,7 @@ while True:
                 next_side = 'RIGHT'
 
             # p1: place card as low as possible     
-            nx.macro(p1, macros.move_up_place.format('3'))  
+            nx.macro(p1, macros.move_up_place.format('2'))  
 
         else: # last three
             nx.macro(p1, macros.move_up_diagonal_place.format('3', next_side))
@@ -123,10 +123,10 @@ while True:
                 next_side = 'RIGHT'
 
             # p1: place card as low as possible 
-            nx.macro(p1, macros.move_up_place.format('8'))
+            nx.macro(p1, macros.move_up_place.format('6'))
         print('skipping...')
 
-        if x != 0: nx.macro(p1, macros.move_up_place.format('9'), block=False)
+        if x != 0: nx.macro(p1, macros.move_up_place.format('11'), block=False)
         # p2: skip turn/discard
         nx.macro(p2, macros.skip_turn)
         #nx.press_buttons(p2, [Buttons.B], up=6.4) #incase of issue
